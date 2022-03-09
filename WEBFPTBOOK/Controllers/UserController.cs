@@ -10,7 +10,7 @@ namespace WEBFPTBOOK.Controllers
     public class UserController : Controller
     {
         // create object manage data
-        DatabaseFPTBookDataContext db = new DatabaseFPTBookDataContext();
+        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
         // GET: User
         public ActionResult Index()
         {
@@ -23,11 +23,11 @@ namespace WEBFPTBOOK.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(FormCollection collection, KhachHang cus)
+        public ActionResult Register(FormCollection collection, Customer cus)
         {
-            // gan gia tri vao form
-            var fullname = collection["Fullname"];
-            var username = collection["Username"];
+            // add value to form
+            var fullname = collection["FullName"];
+            var username = collection["UserName"];
             var password = collection["Password"];
             var password2  = collection["Re-Password"];
             var email = collection["Email"];
@@ -68,28 +68,30 @@ namespace WEBFPTBOOK.Controllers
             }
             else
             {
-                cus.HoTen = fullname;
-                cus.TaiKhoan = username;
-                cus.MatKhau = password;
+                // add value to data
+                cus.FullName = fullname;
+                cus.UserName = username;
+                cus.Password = password;
                 cus.Email = email;
-                cus.DiachiKH = adress;
-                cus.DienThoaiKH = phone;
-                cus.NgaySinh = DateTime.Parse(birthday);
-                db.KhachHangs.InsertOnSubmit(cus);
-                db.SubmitChanges();
-                return RedirectToAction("Login");
+                cus.Address = adress;
+                cus.Phone = phone;
+                cus.Birthday = DateTime.Parse(birthday);
+                data.Customers.InsertOnSubmit(cus);
+                data.SubmitChanges();
+                return RedirectToAction("Index");
 
             }
-            return this.Register();
+            return this.Index();
         }
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Login(FormCollection collection)
         {
-            var username = collection["Username"];
+            var username = collection["UserName"];
             var password = collection["Password"];
             if (string.IsNullOrEmpty(username))
             {
@@ -101,11 +103,12 @@ namespace WEBFPTBOOK.Controllers
             }
             else
             {
-                KhachHang cus = db.KhachHangs.SingleOrDefault(n => n.TaiKhoan == username && n.MatKhau == password);
+                Customer cus = data.Customers.SingleOrDefault(n => n.UserName == username && n.Password == password);
                 if (cus!=null)
                 {
                     ViewBag.Notify = "Login successfully";
                     Session["Username"] = cus;
+                    return RedirectToAction("Index", "FPTBook");
                 }
                 else
                 {
@@ -114,5 +117,7 @@ namespace WEBFPTBOOK.Controllers
             }
             return View();
         }
+
+        //GET : /User/EditUser
     }
 }

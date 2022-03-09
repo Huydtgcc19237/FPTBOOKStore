@@ -26,25 +26,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand">FPTBOOK STORE</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        @Html.ActionLink("Register", "Register", "User")
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        @Html.ActionLink("Login", "Login", "User")
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        @Html.Action("CartPartial", "Cart")
                     </li>
                     <li>
-                        @Html.Action("CartPartial","Cart")
+                        @Html.ActionLink("Admin", "Login", "Admin")
                     </li>
                 </ul>
             </div>
+            
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -56,8 +57,8 @@
         <div class="row">
 
             <div class="col-md-3">
-                @Html.Action("Topic", "FPTBook");
-                @Html.Action("Publisher", "FPTBook");
+                @Html.Action("Topic", "FPTBook")
+                @Html.Action("Publisher", "FPTBook")
             </div>
 
                 <div class="col-md-9">
@@ -110,7 +111,7 @@
                         <footer>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p>Copyright &copy; Your Website 2014</p>
+                                    <p>Copyright &copy; Design by : Thanh Huy</p>
                                 </div>
                             </div>
                         </footer>

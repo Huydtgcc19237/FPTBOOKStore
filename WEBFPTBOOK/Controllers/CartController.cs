@@ -9,33 +9,33 @@ namespace WEBFPTBOOK.Controllers
 {
     public class CartController : Controller
     {
-        DatabaseFPTBookDataContext data = new DatabaseFPTBookDataContext();
+        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
         // GET: Cart
-        public List<Cart> getcart()
+        public List<Cart> GetCart()
         {
-            List<Cart> stCart = Session["Cart"] as List<Cart>;
-            if (stCart ==null)
+            List<Cart> lstCart = Session["Cart"] as List<Cart>;
+            if (lstCart ==null)
             {
-                stCart = new List<Cart>();
-                Session["Cart"] = stCart;
+                lstCart = new List<Cart>();
+                Session["Cart"] = lstCart;
             }
-            return stCart;
+            return lstCart;
         }
-        public ActionResult Cart(int BookID, string strURL)
+        public ActionResult AddCart(int iBookID, string strURL)
         {
             //GET : SESSION
-            List<Cart> stCart = getcart();
+            List<Cart> lstCart = GetCart();
             // Check if the book has been added to the cart
-            Cart product = stCart.Find(n => n.BookID == BookID);
+            Cart product = lstCart.Find(n => n.IBookID == iBookID);
             if (product == null)
             {
-                product = new Cart(BookID);
-                stCart.Add(product);
+                product = new Cart(iBookID);
+                lstCart.Add(product);
                 return Redirect(strURL);
             }
             else
             {
-                product.Quatity++;
+                product.IQuatity++;
                 return Redirect(strURL);
             }
         }
@@ -43,10 +43,10 @@ namespace WEBFPTBOOK.Controllers
         private int TotalQuantity()
         {
             int iTotalQuantity = 0;
-            List<Cart> stCart = Session["Cart"] as List<Cart>;
-            if (stCart!=null)
+            List<Cart> lstCart = Session["Cart"] as List<Cart>;
+            if (lstCart!=null)
             {
-                iTotalQuantity = stCart.Sum(n => n.Quatity);
+                iTotalQuantity = lstCart.Sum(n => n.IQuatity);
 
             }
             return iTotalQuantity;
@@ -55,9 +55,9 @@ namespace WEBFPTBOOK.Controllers
         private double TotalPrice()
         {
             double iTotalPrice = 0;
-            List<Cart> stCart = Session["Cart"] as List<Cart>;
-            if(stCart!=null){
-                iTotalPrice = stCart.Sum(n => n.Total);
+            List<Cart> lstCart = Session["Cart"] as List<Cart>;
+            if(lstCart!=null){
+                iTotalPrice = lstCart.Sum(n => n.ITotal);
 
             }
             return iTotalPrice;
@@ -66,14 +66,14 @@ namespace WEBFPTBOOK.Controllers
         // Create cart
         public ActionResult Cart()
         {
-            List<Cart> stCart = getcart();
-            if(stCart.Count==0)
+            List<Cart> lstCart = GetCart();
+            if(lstCart.Count==0)
             {
                 return RedirectToAction("Index", "FPTBook");
             }
             ViewBag.TotalQuantity = TotalQuantity();
             ViewBag.TotalPrice = TotalPrice();
-            return View(stCart);
+            return View(lstCart);
         }
         public ActionResult CartPartial()
         {
@@ -82,16 +82,83 @@ namespace WEBFPTBOOK.Controllers
             return PartialView();
         }
         // Delete cart
-        public ActionResult DeleteCart(int IBookID)
+        public ActionResult DeleteCart(int iBookID)
         {
-            List<Cart> stCart = getcart();
-            // check book
-            Cart product = stCart.SingleOrDefault(n => n.BookID == IBookID);
-            if(stCart!==null)
+            List<Cart> lstCart = GetCart();
+            Cart product = lstCart.SingleOrDefault(n => n.IBookID == iBookID);
+            if (lstCart != null)
             {
-
+                lstCart.RemoveAll(n => n.IBookID == iBookID);
+                return RedirectToAction("Cart");
             }
+            if (lstCart.Count == 0)
+            {
+                return RedirectToAction("Index", "FPTBook");
+            }
+            return RedirectToAction("Cart");
         }
-
+        // update cart
+        public ActionResult UpdateCart(int iBookID,FormCollection f)
+        {
+            List<Cart> lstCart = GetCart();
+            Cart product = lstCart.SingleOrDefault(n => n.IBookID == iBookID);
+            if (product != null)
+            {
+                product.IQuatity = int.Parse(f["txtQuatity"].ToString());
+            }
+            return RedirectToAction("Cart");
+        }
+        // Order
+        [HttpGet]
+        public ActionResult Order()
+        {
+            // check login
+            if (Session["Username"] == null || Session["Username"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Username");
+            }
+            if(Session["Cart"] == null)
+            {
+                return RedirectToAction("Index", "FPTBook");
+            }
+            // get: cart
+            List<Cart> lstCart = GetCart();
+            ViewBag.TotalQuantity = TotalQuantity();
+            ViewBag.TotalPrice = TotalPrice();
+            return View(lstCart);
+        }
+        // agree to order
+        public ActionResult Order(FormCollection collection)
+        {
+            //add order
+            Order ddh = new Order();
+            Customer cus = (Customer)Session["Username"];
+            List<Cart> gh = GetCart();
+            ddh.CustomerID = cus.CustomerID;
+            ddh.OrderDate = DateTime.Now;
+            var DeliveryDate = string.Format("{0:MM/dd/yyyy}", collection["DeliveryDate"]);
+            ddh.DeliDate = DateTime.Parse(DeliveryDate);
+            ddh.DeliStatus = false;
+            ddh.ComplePay = false;
+            data.Orders.InsertOnSubmit(ddh);
+            data.SubmitChanges();
+            // Add order details
+            foreach (var item in gh)
+            {
+                OrderDetail ctdh = new OrderDetail();
+                ctdh.OrderID = ddh.OrderID;
+                ctdh.BookID = item.IBookID;
+                ctdh.Quality = item.IQuatity;
+                ctdh.Price = (decimal)item.IPrice;
+                data.OrderDetails.InsertOnSubmit(ctdh);            
+            }
+            data.SubmitChanges();
+            Session["Cart"] = null;
+            return RedirectToAction("AgreeToOrder","Cart");
+        }
+        public ActionResult AgreeToOrder()
+        {
+            return View();
+        }
     }
 }

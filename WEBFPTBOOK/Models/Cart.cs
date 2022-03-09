@@ -7,23 +7,23 @@ namespace WEBFPTBOOK.Models
 {
     public class Cart
     {
-        DatabaseFPTBookDataContext data = new DatabaseFPTBookDataContext();
-        public int BookID { get; set; }
-        public string BookName { get; set; }
-        public string BookPic { get; set; }
-        public Double Price { get; set; }
-        public int Quatity { get; set; }
-        public Double Total {
-            get { return Quatity * Price; }       
+        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
+        public int IBookID { get; set; }
+        public string IBookName { get; set; }
+        public string IBookPic { get; set; }
+        public Double IPrice { get; set; }
+        public int IQuatity { get; set; }
+        public Double ITotal {
+            get { return IQuatity * IPrice; }       
         }
-        public Cart(int MaSach)
+        public Cart(int BookID)
         {
-            BookID = MaSach;
-            Sach sach = data.Saches.Single(n => n.MaSach == BookID);
-            BookName = sach.TenSach;
-            BookPic = sach.AnhBia;
-            Price = double.Parse(sach.GiaBan.ToString());
-            Quatity = 1;
+            IBookID = BookID;
+            Book book = data.Books.Single(n => n.BookID == IBookID);
+            IBookName = book.BookName;
+            IBookPic = book.BookPic;
+            IPrice = double.Parse(book.Price.ToString());
+            IQuatity = 1;
         }
 
     }

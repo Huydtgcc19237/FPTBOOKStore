@@ -75,4 +75,12 @@ C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\Microsoft.CodeDom.Providers
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.csproj.CoreCompileInputs.cache
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.dll
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.pdb
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\PagedList.dll
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\PagedList.Mvc.dll
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\PagedList.xml
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\PagedList.Mvc.xml
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.csproj.AssemblyReference.cache
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\EntityFramework.dll
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\EntityFramework.SqlServer.dll
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\EntityFramework.xml
+C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\EntityFramework.SqlServer.xml
