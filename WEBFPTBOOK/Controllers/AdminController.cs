@@ -58,7 +58,7 @@ namespace WEBFPTBOOK.Controllers
         public ActionResult AddBook()
         {
             ViewBag.TopicID = new SelectList(data.Topics.ToList().OrderBy(n => n.TopicName), "TopicID", "TopicName");
-            ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubName), "PubID", "PubID");
+            ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubName), "PubID", "PubName");
             return View();
         }
         [HttpPost]
@@ -130,8 +130,7 @@ namespace WEBFPTBOOK.Controllers
         [HttpGet]
         public ActionResult Publisher()
         {
-            ViewBag.PubID = new SelectList(data.Topics.ToList().OrderBy(n => n.TopicName), "TopicID", "TopicName");
-            ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubName), "PubID", "PubID");
+            ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubID), "TopicID", "TopicName");
             return View();
         }
     }

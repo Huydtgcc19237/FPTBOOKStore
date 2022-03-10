@@ -20,9 +20,9 @@ namespace WEBFPTBOOK.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="FPTBook")]
+    using System.ComponentModel.DataAnnotations;
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="FPTBook")]
 	public partial class DatabaseFPTBookContextDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -991,9 +991,7 @@ namespace WEBFPTBOOK.Models
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
 		private int _CustomerID;
-		
 		private string _FullName;
 		
 		private string _UserName;
@@ -1039,6 +1037,7 @@ namespace WEBFPTBOOK.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		
 		public int CustomerID
 		{
 			get

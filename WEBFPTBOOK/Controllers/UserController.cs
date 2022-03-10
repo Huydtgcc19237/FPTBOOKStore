@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using WEBFPTBOOK.Models;
 
 namespace WEBFPTBOOK.Controllers
 {
-    public class UserController : Controller
+    public class UserProcess : Controller
     {
         // create object manage data
         DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
@@ -23,65 +27,29 @@ namespace WEBFPTBOOK.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(FormCollection collection, Customer cus)
+        public ActionResult Register(Customer cus)
         {
+            cus.Password = EncodePassword(cus.Password);
             // add value to form
-            var fullname = collection["FullName"];
-            var username = collection["UserName"];
-            var password = collection["Password"];
-            var password2  = collection["Re-Password"];
-            var email = collection["Email"];
-            var phone = collection["Phone"];
-            var adress = collection["Adress"];
-            var birthday = string.Format("{0:MM/dd/yyyy}", collection["Birthday"]);
-            if (string.IsNullOrEmpty(fullname))
-            {
-                ViewData["Error1"] = "Name cannot be blank!!!";
-            }
-            if (string.IsNullOrEmpty(username))
-            {
-                ViewData["Error2"] = "Please enter username!!!";
-            }
-            if (string.IsNullOrEmpty(password))
-            {
-                ViewData["Error3"] = "Please enter password!!!";
-            }
-            if (string.IsNullOrEmpty(password2))
-            {
-                ViewData["Error4"] = "Please enter re-password!!!";
-            }
-            if (string.IsNullOrEmpty(email))
-            {
-                ViewData["Error5"] = "Please enter email!!!";
-            }
-            if (string.IsNullOrEmpty(phone))
-            {
-                ViewData["Error6"] = "Please enter phone!!!";
-            }
-            if (string.IsNullOrEmpty(adress))
-            {
-                ViewData["Error7"] = "Please enter address!!!";
-            }
-            if (string.IsNullOrEmpty(birthday))
-            {
-                ViewData["Error8"] = "Please enter your date of birth!!!";
-            }
-            else
-            {
-                // add value to data
-                cus.FullName = fullname;
-                cus.UserName = username;
-                cus.Password = password;
-                cus.Email = email;
-                cus.Address = adress;
-                cus.Phone = phone;
-                cus.Birthday = DateTime.Parse(birthday);
-                data.Customers.InsertOnSubmit(cus);
-                data.SubmitChanges();
-                return RedirectToAction("Index");
+            data.Customers.InsertOnSubmit(cus);
+            data.SubmitChanges();
+            return RedirectToAction("Index", "FPTBook");
 
-            }
-            return this.Index();
+        }
+        public static string EncodePassword(string originalPassword)
+        {
+            //Declarations
+            Byte[] originalBytes;
+            Byte[] encodedBytes;
+            MD5 md5;
+
+            //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
+            md5 = new MD5CryptoServiceProvider();
+            originalBytes = System.Text.ASCIIEncoding.Default.GetBytes(originalPassword);
+            encodedBytes = md5.ComputeHash(originalBytes);
+
+            //Convert encoded bytes back to a 'readable' string
+            return BitConverter.ToString(encodedBytes);
         }
         [HttpGet]
         public ActionResult Login()
@@ -104,10 +72,10 @@ namespace WEBFPTBOOK.Controllers
             else
             {
                 Customer cus = data.Customers.SingleOrDefault(n => n.UserName == username && n.Password == password);
-                if (cus!=null)
+                if (cus != null)
                 {
                     ViewBag.Notify = "Login successfully";
-                    Session["Username"] = cus;
+                    Session["Username"] = cus.UserName;
                     return RedirectToAction("Index", "FPTBook");
                 }
                 else
@@ -117,7 +85,21 @@ namespace WEBFPTBOOK.Controllers
             }
             return View();
         }
-
         //GET : /User/EditUser
+        public ActionResult Edit()
+        {
+            var model = Session["Username"];
+            if (ModelState.IsValid)
+            {
+                Customer result = data.Customers.SingleOrDefault(n => n.UserName == model);
+            }
+            return RedirectToAction("Index", "FPTBook");
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "FPTBook");
+        }
     }
+       
 }

@@ -164,41 +164,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\Day_Doc.jpg" />
-    <Content Include="images\giohang.gif" />
+    <Content Include="images\bg1.jpg" />
+    <Content Include="images\cart.png" />
+    <Content Include="images\cartlogo.jpg" />
+    <Content Include="images\Carttt.gif" />
+    <Content Include="images\header1.jpg" />
+    <Content Include="images\header2.jpg" />
+    <Content Include="images\header33.jpg" />
+    <Content Include="images\header4.jpg" />
     <Content Include="images\KH_CVHTLBT.png" />
     <Content Include="images\KH_MVTLT.jpg" />
     <Content Include="images\KH_NKH.jpg" />
     <Content Include="images\KH_QLVT.JPG" />
     <Content Include="images\KH_VT.jpg" />
     <Content Include="images\KH_VTLT.jpg" />
-    <Content Include="images\logo.jpg" />
-    <Content Include="images\Logo_SachHay.jpg" />
-    <Content Include="images\Logo_Store.gif" />
-    <Content Include="images\Nut_DangKy.png" />
-    <Content Include="images\Nut_DangNhap.png" />
-    <Content Include="images\templatemo_ads.jpg" />
-    <Content Include="images\templatemo_bg.jpg" />
-    <Content Include="images\templatemo_btn_01.jpg" />
-    <Content Include="images\templatemo_btn_02.jpg" />
-    <Content Include="images\templatemo_footer_bg.jpg" />
-    <Content Include="images\templatemo_h1_bg.jpg" />
-    <Content Include="images\templatemo_header_bg.jpg" />
-    <Content Include="images\templatemo_header_bg1.jpg" />
-    <Content Include="images\templatemo_header_bg2.jpg" />
-    <Content Include="images\templatemo_header_bg_blank.jpg" />
-    <Content Include="images\templatemo_image_01.jpg" />
-    <Content Include="images\templatemo_image_02.jpg" />
-    <Content Include="images\templatemo_image_03.jpg" />
-    <Content Include="images\templatemo_image_04.jpg" />
-    <Content Include="images\templatemo_menu_bg.jpg" />
-    <Content Include="product_imgs\Day_Doc.jpg" />
-    <Content Include="product_imgs\KH_CVHTLBT.png" />
-    <Content Include="product_imgs\KH_MVTLT.jpg" />
-    <Content Include="product_imgs\KH_NKH.jpg" />
-    <Content Include="product_imgs\KH_QLVT.JPG" />
-    <Content Include="product_imgs\KH_VT.jpg" />
-    <Content Include="product_imgs\KH_VTLT.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Models\DatabaseFPTBookContext.dbml">
@@ -252,9 +231,11 @@
     <Content Include="Views\Admin\AddBook.cshtml" />
     <Content Include="Views\Admin\DeleteAll.cshtml" />
     <Content Include="Views\Admin\Publisher.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="product_imgs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -131,25 +131,25 @@ namespace WEBFPTBOOK.Controllers
         public ActionResult Order(FormCollection collection)
         {
             //add order
-            Order ddh = new Order();
+            Order ord = new Order();
             Customer cus = (Customer)Session["Username"];
             List<Cart> gh = GetCart();
-            ddh.CustomerID = cus.CustomerID;
-            ddh.OrderDate = DateTime.Now;
+            ord.CustomerID = cus.CustomerID;
+            ord.OrderDate = DateTime.Now;
             var DeliveryDate = string.Format("{0:MM/dd/yyyy}", collection["DeliveryDate"]);
-            ddh.DeliDate = DateTime.Parse(DeliveryDate);
-            ddh.DeliStatus = false;
-            ddh.ComplePay = false;
-            data.Orders.InsertOnSubmit(ddh);
+            ord.DeliDate = DateTime.Parse(DeliveryDate);
+            ord.DeliStatus = false;
+            ord.ComplePay = false;
+            data.Orders.InsertOnSubmit(ord);
             data.SubmitChanges();
             // Add order details
             foreach (var item in gh)
             {
                 OrderDetail ctdh = new OrderDetail();
-                ctdh.OrderID = ddh.OrderID;
+                ctdh.OrderID = ord.OrderID;
                 ctdh.BookID = item.IBookID;
                 ctdh.Quality = item.IQuatity;
-                ctdh.Price = (decimal)item.IPrice;
+                ctdh.Price = (decimal) item.IPrice;
                 data.OrderDetails.InsertOnSubmit(ctdh);            
             }
             data.SubmitChanges();

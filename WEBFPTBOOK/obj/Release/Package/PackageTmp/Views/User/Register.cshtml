@@ -8,7 +8,7 @@
 
 <table align="center">
     <h2>REGISTER</h2>
-    @using (Html.BeginForm("Register","User",FormMethod.Post))
+    @using (Html.BeginForm())
     {
         @Html.ValidationSummary(true)
         <tr style="height:40px">
@@ -34,7 +34,7 @@
                 Password:
             </td>
             <td>
-                @Html.TextBox("Password")
+                <input type="password" name="Password" />
                 @ViewData["Error3"]
             </td>
         </tr>
@@ -43,7 +43,7 @@
                 Re-Password:
             </td>
             <td>
-                @Html.TextBox("Re-Password")
+                <input type="password" name="Re-Password" />
                 @ViewData["Error4"]
             </td>
         </tr>
