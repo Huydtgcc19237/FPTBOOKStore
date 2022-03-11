@@ -40,9 +40,9 @@
                         }
                         else
                         {
-
-                            <li>Hi, @Session["Username"]</li>
-                            <li>@Html.ActionLink("Information User", "Edit","User")</li>
+                            <li class="navbar-brand">Hi, @Session["Username"]</li>
+                            <li>@Html.ActionLink("Profile", "Edit", "User")</li>
+                            <li>@Html.ActionLink("Order", "Order", "Cart")</li>
                             <li>@Html.Action("CartPartial", "Cart")</li>
                             <li>@Html.ActionLink("Logout", "Logout", "User")</li>
 

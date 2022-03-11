@@ -13,7 +13,9 @@
 
     <!-- Custom CSS -->
     <link href="~/Content/shop-homepage.css" rel="stylesheet">
-
+    <script src="~/Scripts/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/js/tinymce/themes/silver/theme.min.js"></script>
+    <script> tinymce.init({ selector:'textarea' }) </script>
     <body>
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,7 +36,7 @@
                             @Html.ActionLink("HOME PAGE", "Index", "Admin")
                         </li>
                         <li>
-                            @Html.ActionLink("Theme management", "Product", "Admin")
+                            @Html.ActionLink("Topic Management", "Topic", "Admin")
                         </li>
                         <li>
                             @Html.ActionLink("Publisher Management", "Publisher", "Admin")
@@ -63,12 +65,12 @@
             </footer>
 
         </div>
-                <!-- /.container -->
-                <!-- jQuery -->
-                <script src="~/Scripts/jquery.js"></script>
+        <!-- /.container -->
+        <!-- jQuery -->
+        <script src="~/Scripts/jquery.js"></script>
 
-                <!-- Bootstrap Core JavaScript -->
-                <script src="~/Scripts/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Scripts/bootstrap.min.js"></script>
 
     </body>
 </html>

@@ -31,19 +31,22 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    @if (Session["Username"] == null)
-                    {
-                        <li>@Html.ActionLink("Login", "Login", "User")</li>
-                        <li>@Html.ActionLink("Register", "Register", "User")</li>
-                        <li>@Html.ActionLink("Admin", "Login", "Admin")</li>
-                    }
-                    else
-                    {
-                        <li>Hi, @Session["Username"]</li>
-                        <li>@Html.Action("CartPartial", "Cart")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                    <ul class="nav navbar-nav">
+                        @if (Session["Username"] == null)
+                        {
+                            <li>@Html.ActionLink("Login", "Login", "User")</li>
+                            <li>@Html.ActionLink("Register", "Register", "User")</li>
+                            <li>@Html.ActionLink("Admin", "Login", "Admin")</li>
+                        }
+                        else
+                        {
+                            <li class="navbar-brand">Hi, @Session["Username"]</li>
+                            <li>@Html.ActionLink("Profile", "Edit","User")</li>
+                            <li>@Html.Action("CartPartial", "Cart")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "User")</li>
 
-                    }
+                        }
+                    </ul>
                 </div>
             </div>
             
@@ -75,13 +78,10 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img class="slide-image" src="~/images/templatemo_header_bg.jpg" alt="">
+                                        <img class="slide-image" src="~/images/bg1.jpg" alt="">
                                     </div>
                                     <div class="item">
-                                        <img class="slide-image" src="~/images/templatemo_header_bg1.jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img class="slide-image" src="~/images/templatemo_header_bg2.jpg" alt="">
+                                        <img class="slide-image" src="~/images/header33.jpg" alt="">
                                     </div>
                                 </div>
                                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

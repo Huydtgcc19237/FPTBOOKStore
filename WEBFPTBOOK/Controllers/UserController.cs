@@ -11,7 +11,7 @@ using WEBFPTBOOK.Models;
 
 namespace WEBFPTBOOK.Controllers
 {
-    public class UserProcess : Controller
+    public class UserController : Controller
     {
         // create object manage data
         DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
@@ -86,14 +86,17 @@ namespace WEBFPTBOOK.Controllers
             return View();
         }
         //GET : /User/EditUser
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            var model = Session["Username"];
-            if (ModelState.IsValid)
-            {
-                Customer result = data.Customers.SingleOrDefault(n => n.UserName == model);
-            }
-            return RedirectToAction("Index", "FPTBook");
+            return View(data.Customers.SingleOrDefault(n => n.CustomerID == id));
+
+        }
+        [HttpPost]
+        public ActionResult Edit(Customer cus)
+        {
+            UpdateModel(cus);
+            data.SubmitChanges();
+            return RedirectToAction("Edit");
         }
         public ActionResult Logout()
         {

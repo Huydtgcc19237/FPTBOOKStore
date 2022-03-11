@@ -21,6 +21,8 @@ namespace WEBFPTBOOK.Models
 	using System.ComponentModel;
 	using System;
     using System.ComponentModel.DataAnnotations;
+	using System.Web;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="FPTBook")]
 	public partial class DatabaseFPTBookContextDataContext : System.Data.Linq.DataContext
@@ -570,6 +572,7 @@ namespace WEBFPTBOOK.Models
 		private EntityRef<Topic> _Topic;
 		
 		private EntityRef<Publisher> _Publisher;
+
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();

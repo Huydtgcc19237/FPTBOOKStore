@@ -63,7 +63,7 @@ namespace WEBFPTBOOK.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddBook(Book book, HttpPostedFileBase fileupload)
+        public ActionResult AddBook(Book bookpic, HttpPostedFileBase fileupload)
         {
             ViewBag.TopicID = new SelectList(data.Topics.ToList().OrderBy(n => n.TopicName), "TopicID", "TopicName");
             ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubName), "PubID", "PubName");
@@ -81,19 +81,19 @@ namespace WEBFPTBOOK.Controllers
                     //save file image
                     var fileName = Path.GetFileName(fileupload.FileName);
                     // save link file
-                    var path = Path.Combine(Server.MapPath("~/product_imgs"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/product_imgs"), Path.GetFileName(fileName));
                     if (System.IO.File.Exists(path))
                         ViewBag.Notify = "image already exists";
                     else
                     {
                         fileupload.SaveAs(path);
                     }
-                    book.BookPic = fileName;
+                    bookpic.BookPic = fileName;
                     // Save File
-                    data.Books.InsertOnSubmit(book);
+                    data.Books.InsertOnSubmit(bookpic);
                     data.SubmitChanges();
                 }
-                return RedirectToAction("BookManages");
+                return RedirectToAction("BookManage");
             }
 
         }
@@ -130,8 +130,73 @@ namespace WEBFPTBOOK.Controllers
         [HttpGet]
         public ActionResult Publisher()
         {
-            ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubID), "TopicID", "TopicName");
+            return View(data.Publishers.ToList());
+        }
+        public ActionResult AddPublisher()
+        {
             return View();
+        }
+        [HttpPost]
+        public ActionResult AddPublisher(Publisher pub)
+        {
+            data.Publishers.InsertOnSubmit(pub);
+            data.SubmitChanges();
+            return RedirectToAction("Publisher");
+        }
+
+        public ActionResult DeletePubliser( int id )
+        {
+            var dtl = data.Publishers.SingleOrDefault(n => n.PubID == id);
+            data.Publishers.DeleteOnSubmit(dtl);
+            data.SubmitChanges();
+            return RedirectToAction("Publisher");
+        }
+
+        public ActionResult EditPublisher(int id)
+        {
+            return View(data.Publishers.SingleOrDefault(n => n.PubID == id));
+        }
+        [HttpPost]
+        public ActionResult EditPublisher(Publisher pub)
+        {
+            UpdateModel(pub);
+            data.SubmitChanges();
+            return RedirectToAction("Publisher");
+        }
+
+        [HttpGet]
+        public ActionResult Topic()
+        {
+            return View(data.Topics.ToList());
+        }
+        public ActionResult AddTopic()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddTopic(Topic tp)
+        {
+            data.Topics.InsertOnSubmit(tp);
+            data.SubmitChanges();
+            return RedirectToAction("Topic");
+        }
+        public ActionResult DeleteTopic(int id)
+        {
+            var dtl = data.Topics.SingleOrDefault(n => n.TopicID == id);
+            data.Topics.DeleteOnSubmit(dtl);
+            data.SubmitChanges();
+            return RedirectToAction("Topic");
+        }
+        public ActionResult EditTopic(int id)
+        {
+            return View(data.Topics.SingleOrDefault(n => n.TopicID == id));
+        }
+        [HttpPost]
+        public ActionResult EditTopic(Topic tp)
+        {
+            UpdateModel(tp);
+            data.SubmitChanges();
+            return RedirectToAction("Topic");
         }
     }
 }

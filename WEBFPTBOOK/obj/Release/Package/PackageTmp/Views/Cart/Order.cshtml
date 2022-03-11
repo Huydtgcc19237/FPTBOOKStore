@@ -7,7 +7,7 @@
 
 <h2>Order Information</h2>
 <table border="1" align="center">
-    <tr>
+    <tr style="text-align:center; font-weight:bold">
         <td>Book ID</td>
         <td>Book Name</td>
         <td>book cover photo</td>
@@ -38,8 +38,9 @@
         <td colspan="6"> @Html.ActionLink("Back to Cart", "Cart", "Cart")</td>
     </tr>
 </table>
+
 <h2>Customer information</h2>
-@{ 
+@{
     Customer cus = (Customer)Session["Username"];
 }
 <table>
@@ -50,33 +51,25 @@
             <td>
                 Fullname:
             </td>
-            <td>
-                @cus.FullName
-            </td>
+            <td style="font-weight: bold">@cus.UserName</td>
         </tr>
         <tr style="height:40px">
             <td>
                 Address:
             </td>
-            <td>
-                @cus.Address
-            </td>
+            <td style="font-weight: bold">@cus.Address</td>
         </tr>
         <tr style="height:40px">
             <td>
                 Phone:
             </td>
-            <td>
-                @cus.Phone
-            </td>
+            <td style="font-weight: bold">@cus.Phone</td>
         </tr>
         <tr style="height:40px">
             <td>
                 Order Date:
             </td>
-            <td>
-                @DateTime.Now.ToShortDateString()
-            </td>
+            <td style="font-weight: bold">@DateTime.Now.ToShortDateString()</td>
         </tr>
         <tr style="height:40px">
             <td>
