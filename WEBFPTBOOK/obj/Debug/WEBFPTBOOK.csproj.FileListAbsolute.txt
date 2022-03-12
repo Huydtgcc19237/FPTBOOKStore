@@ -83,4 +83,3 @@ C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\bin\Microsoft.CodeDom.Providers
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.csproj.CoreCompileInputs.cache
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.dll
 C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.pdb
-C:\Users\THANH HUY\Desktop\WEBFPTBOOK\WEBFPTBOOK\obj\Debug\WEBFPTBOOK.csproj.AssemblyReference.cache

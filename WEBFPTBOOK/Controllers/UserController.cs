@@ -76,6 +76,7 @@ namespace WEBFPTBOOK.Controllers
                 {
                     ViewBag.Notify = "Login successfully";
                     Session["Username"] = cus.UserName;
+                    Session["id"] = cus.CustomerID;
                     return RedirectToAction("Index", "FPTBook");
                 }
                 else

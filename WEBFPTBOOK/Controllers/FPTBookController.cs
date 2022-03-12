@@ -49,25 +49,18 @@ namespace WEBFPTBOOK.Controllers
             var book = from b in data.Books where b.BookID == id select b;
             return View(book.Single());
         }
-        /*[HttpGet]
-        public ActionResult SearchResult(int? page, string key)
+        [HttpPost]
+        public ActionResult SearchResult(string searchKey)
         {
-            ViewBag.Key = key;
-
-            //phân trang
-            int pageNumber = (page ?? 1);
-            int pageSize = 6;
-
-            var result = new HomeProcess().Search(key).ToPagedList(pageNumber, pageSize);
-
-            if (result.Count == 0 || key == null || key == "")
+            if (searchKey == null)
             {
-                ViewBag.ThongBao = "Không tìm thấy sản phẩm nào";
-                return View(result);
+                return RedirectToAction("Index","FPTBook");
             }
-            ViewBag.ThongBao = "Hiện có " + result.Count + " kết quả ở trang này";
-
-            return View(result);
-        }*/
+            else
+            {
+                return View(data.Books.Where(x => x.BookName.Contains(searchKey)).ToList());
+            }
+            
+        }
     }
 }

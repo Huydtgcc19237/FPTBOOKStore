@@ -58,8 +58,8 @@
             @Html.DisplayFor(modelItem => item.Birthday)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
+            @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.CustomerID }, new { onclick = "return confirm('Are you sure?');" })
         </td>
     </tr>
 }

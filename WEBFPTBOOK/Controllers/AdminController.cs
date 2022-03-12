@@ -128,7 +128,15 @@ namespace WEBFPTBOOK.Controllers
         }
         public ActionResult EditBook(int id)
         {
-            return View(data.Books.SingleOrDefault(n => n.PubID == id));
+            Book book = data.Books.SingleOrDefault(n => n.BookID == id);
+            ViewBag.BookID = book.BookID;
+            if (book == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(book);
+
         }
         //Create Publisher manage
         [HttpGet]
@@ -205,6 +213,13 @@ namespace WEBFPTBOOK.Controllers
         public ActionResult CustomerManage()
         {
             return View(data.Customers.ToList());
+        }
+        public ActionResult DeleteCustomer(int id)
+        {
+            var dcus = data.Customers.SingleOrDefault(n => n.CustomerID == id);
+            data.Customers.DeleteOnSubmit(dcus);
+            data.SubmitChanges();
+            return RedirectToAction("CustomerManage");
         }
 
     }

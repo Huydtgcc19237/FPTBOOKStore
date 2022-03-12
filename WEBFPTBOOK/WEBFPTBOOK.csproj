@@ -180,7 +180,12 @@
     <Content Include="images\KH_QLVT.JPG" />
     <Content Include="images\KH_VT.jpg" />
     <Content Include="images\KH_VTLT.jpg" />
+    <Content Include="product_imgs\KH_CVHTLBT.png" />
+    <Content Include="product_imgs\KH_MVTLT.jpg" />
+    <Content Include="product_imgs\KH_NKH.jpg" />
     <Content Include="product_imgs\KH_QLVT.jpg" />
+    <Content Include="product_imgs\KH_VT.jpg" />
+    <Content Include="product_imgs\KH_VTLT.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Models\DatabaseFPTBookContext.dbml">
@@ -304,6 +309,8 @@
     <Content Include="Views\User\EditCus.cshtml" />
     <Content Include="Views\Admin\CustomerManage.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\FPTBook\SearchResult.cshtml" />
+    <Content Include="Views\FPTBook\EditCus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
