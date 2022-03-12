@@ -126,6 +126,10 @@ namespace WEBFPTBOOK.Controllers
             data.SubmitChanges();
             return RedirectToAction("BookManage");
         }
+        public ActionResult EditBook(int id)
+        {
+            return View(data.Books.SingleOrDefault(n => n.PubID == id));
+        }
         //Create Publisher manage
         [HttpGet]
         public ActionResult Publisher()
@@ -198,5 +202,10 @@ namespace WEBFPTBOOK.Controllers
             data.SubmitChanges();
             return RedirectToAction("Topic");
         }
+        public ActionResult CustomerManage()
+        {
+            return View(data.Customers.ToList());
+        }
+
     }
 }

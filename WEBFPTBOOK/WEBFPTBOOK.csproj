@@ -273,7 +273,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\FPTBook\Index.cshtml" />
     <Content Include="Views\FPTBook\Topic.cshtml" />
@@ -299,9 +298,12 @@
     <Content Include="Views\Admin\AddPublisher.cshtml" />
     <Content Include="Views\Admin\EditPublisher.cshtml" />
     <Content Include="Views\Admin\Topic.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Admin\AddTopic.cshtml" />
     <Content Include="Views\Admin\EditTopic.cshtml" />
+    <Content Include="Views\Admin\EditBook.cshtml" />
+    <Content Include="Views\User\EditCus.cshtml" />
+    <Content Include="Views\Admin\CustomerManage.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

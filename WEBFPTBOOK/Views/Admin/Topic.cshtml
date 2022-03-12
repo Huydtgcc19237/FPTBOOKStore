@@ -32,7 +32,7 @@
     </td>
     <td>
         @Html.ActionLink("Edit", "EditTopic", new { id = item.TopicID }) |
-        @Html.ActionLink("Delete", "DeleteTopic", new { id = item.TopicID })
+        @Html.ActionLink("Delete", "DeleteTopic", new { id = item.TopicID }, new { onclick = "return confirm('Are you sure?');" })
     </td>
 </tr>
 }

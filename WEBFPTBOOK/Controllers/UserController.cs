@@ -86,13 +86,13 @@ namespace WEBFPTBOOK.Controllers
             return View();
         }
         //GET : /User/EditUser
-        public ActionResult Edit(int id)
+        public ActionResult EditCus(int id)
         {
             return View(data.Customers.SingleOrDefault(n => n.CustomerID == id));
 
         }
         [HttpPost]
-        public ActionResult Edit(Customer cus)
+        public ActionResult EditCus(Customer cus)
         {
             UpdateModel(cus);
             data.SubmitChanges();
